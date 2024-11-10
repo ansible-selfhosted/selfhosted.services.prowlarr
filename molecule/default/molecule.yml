@@ -3,7 +3,17 @@ role_name_check: 1
 driver:
   name: podman
 platforms:
-  - name: instance
+  - name: prowlarr_latest
+    image: quay.io/speakintelnet/pinp-molecule
+    privileged: true
+    pre_build_image: true
+    systemd: true
+  - name: prowlarr_develop
+    image: quay.io/speakintelnet/pinp-molecule
+    privileged: true
+    pre_build_image: true
+    systemd: true
+  - name: prowlarr_nightly
     image: quay.io/speakintelnet/pinp-molecule
     privileged: true
     pre_build_image: true
@@ -12,7 +22,14 @@ provisioner:
   name: ansible
   inventory:
     host_vars:
-      instance:
+      prowlarr_latest:
         ansible_user: podman
+        prowlarr_version: latest
+      prowlarr_develop:
+        ansible_user: podman
+        prowlarr_version: latest
+      prowlarr_nightly:
+        ansible_user: podman
+        prowlarr_version: latest
 verifier:
   name: ansible

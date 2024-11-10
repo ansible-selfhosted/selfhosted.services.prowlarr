@@ -1,0 +1,19 @@
+[Unit]
+Description=An indexer manager/proxy built on the popular arr base stack.
+
+[Container]
+AutoUpdate=registry
+ContainerName=prowlarr
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=TZ={{ prowlarr_timezone }}
+Image=lscr.io/linuxserver/prowlarr:{{ prowlarr_version }}
+PublishPort={{ prowlarr_web_port }}:9696
+Volume={{ prowlarr_config_path }}:/config
+Volume={{ prowlarr_data_path }}:/data
+
+[Service]
+Restart=unless-stopped
+
+[Install]
+WantedBy=multi-user.targe

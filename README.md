@@ -7,6 +7,43 @@
 
 <!-- BEGIN_ANSIBLE_DOCS -->
 
-### The readme content is auto-generated with the `hatch run docs:generate` command.
+# Ansible Role: [prowlarr](https://wiki.servarr.com/en/prowlarr)
+
+A role to deploy Prowlarr using rootless Podman with systemd
+
+## Role Requirements
+
+- none
+
+*Refer to services collection for general requirements*
+
+## Role Arguments
+
+|Option|Description|Type|Required|Default|choices|
+|---|---|---|---|---|---|
+|prowlarr_config_path|The path to the prowlarr configuration directory|str|False|~/.config/prowlarr/|
+|prowlarr_data_path|The path to the prowlarr data directory<br>It is recommended to share the same data directory with other media managing services|str|False|~/.local/share/containers/storage/media|
+|prowlarr_timezone|The timezone for the prowlarr service|str|False|Etc/UTC|
+|prowlarr_version|The version of prowlarr to install|str|False|latest|- latest<br>- develop<br>- nightly
+|prowlarr_web_port|The port for the web server|int|False|9696|
+
+
+## Example Playbook
+
+```
+- hosts: all
+  tasks:
+    - name: Importing prowlarr role
+      ansible.builtin.import_role:
+        name: selfhosted.services.prowlarr
+      vars:
+```
+
+## License
+
+This project is licensed under the [MIT License](LICENSE)
+
+
+⊂(▀¯▀⊂)
 
 <!-- END_ANSIBLE_DOCS -->

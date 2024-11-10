@@ -1,4 +1,6 @@
 ---
-# defaults file for services.prowlarr
-
-published_port: 8080
+prowlarr_config_path: ~/.config/prowlarr/
+prowlarr_data_path: ~/.local/share/containers/storage/media
+prowlarr_timezone: Etc/UTC
+prowlarr_version: latest
+prowlarr_web_port: 9696

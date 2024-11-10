@@ -6,17 +6,39 @@
     state: present
   register: user_info
 
+- name: Normalize default paths
+  ansible.builtin.set_fact:
+    prowlarr_config_path: "{{
+      prowlarr_config_path | replace('~', user_info.home)
+      }}"
+    prowlarr_data_path: "{{
+      prowlarr_data_path | replace('~', user_info.home)
+      }}"
+
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0750"
+    recurse: true
+  loop:
+    - "{{ prowlarr_config_path }}"
+    - "{{ prowlarr_data_path }}"
+
 - name: Put container related files on the host
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "0640"
   loop:
-    - { src: httpd.container.j2, dest: "{{ user_info.home }}/.config/containers/systemd/httpd.container" }
+    - {
+      "src": "prowlarr.container.j2",
+      "dest": "{{ user_info.home }}/.config/containers/systemd/prowlarr.container",
+    }
 
 - name: Start the container service
   ansible.builtin.systemd:
-    name: httpd
+    name: prowlarr
     state: started
     scope: user
     enabled: true
