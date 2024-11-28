@@ -24,7 +24,7 @@ A role to deploy Prowlarr using rootless Podman with systemd
 |prowlarr_config_path|The path to the prowlarr configuration directory|str|False|~/.config/prowlarr/|
 |prowlarr_data_path|The path to the prowlarr data directory<br>It is recommended to share the same data directory with other media managing services|str|False|~/.local/share/containers/storage/media|
 |prowlarr_timezone|The timezone for the prowlarr service|str|False|Etc/UTC|
-|prowlarr_version|The version of prowlarr to install|str|False|latest|- latest<br>- develop<br>- nightly
+|prowlarr_version|The version of prowlarr to install|str|False|latest|<ul><li>latest</li><li>develop</li><li>nightly</li></ul>
 |prowlarr_web_port|The port for the web server|int|False|9696|
 
 
