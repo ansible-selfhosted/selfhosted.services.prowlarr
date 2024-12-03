@@ -9,8 +9,8 @@ Environment=PGID=1000
 Environment=TZ={{ prowlarr_timezone }}
 Image=lscr.io/linuxserver/prowlarr:{{ prowlarr_version }}
 PublishPort={{ prowlarr_web_port }}:9696
-Volume={{ prowlarr_config_path }}:/config
-Volume={{ prowlarr_data_path }}:/data
+Volume={{ prowlarr_config_path }}:/config:Z
+Volume={{ prowlarr_data_path }}:/data:z
 
 [Service]
 Restart=always
