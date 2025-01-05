@@ -1,6 +1,11 @@
 ---
+prowlarr_additional_options: []
+prowlarr_config_label: ''
 prowlarr_config_path: ~/.config/prowlarr/
+prowlarr_data_label: ''
 prowlarr_data_path: ~/.local/share/containers/storage/media
+prowlarr_puid: 1000
+prowlarr_pgid: 1000
 prowlarr_timezone: Etc/UTC
 prowlarr_version: latest
 prowlarr_web_port: 9696

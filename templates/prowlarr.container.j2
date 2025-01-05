@@ -4,13 +4,18 @@ Description=An indexer manager/proxy built on the popular arr base stack.
 [Container]
 AutoUpdate=registry
 ContainerName=prowlarr
-Environment=PUID=1000
-Environment=PGID=1000
+Environment=PUID={{ prowlarr_puid }}
+Environment=PGID={{ prowlarr_pgid }}
 Environment=TZ={{ prowlarr_timezone }}
 Image=lscr.io/linuxserver/prowlarr:{{ prowlarr_version }}
 PublishPort={{ prowlarr_web_port }}:9696
-Volume={{ prowlarr_config_path }}:/config:Z
-Volume={{ prowlarr_data_path }}:/data:z
+Volume={{ prowlarr_config_path }}:/config{% if prowlarr_config_label|length > 0 %}:{{ prowlarr_config_label }}{% endif %}
+
+Volume={{ prowlarr_data_path }}:/data{% if prowlarr_data_label|length > 0 %}:{{ prowlarr_data_label }}{% endif %}
+
+{% for prowlarr_var in prowlarr_additional_options %}
+{{ prowlarr_var }}
+{% endfor %}
 
 [Service]
 Restart=always
